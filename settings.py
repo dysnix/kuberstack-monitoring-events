@@ -13,3 +13,8 @@ UPDATE_INTERVAL = os.environ.get('UPDATE_INTERVAL', 60)
 
 ALERTS_LEVELS_EXCLUDE_RAW = os.environ.get('ALERTS_LEVELS_EXCLUDE', 'Normal')
 ALERTS_LEVELS_EXCLUDE = [level.strip() for level in ALERTS_LEVELS_EXCLUDE_RAW.split(',')]
+
+try:
+    from local_settings import *
+except ImportError:
+    pass

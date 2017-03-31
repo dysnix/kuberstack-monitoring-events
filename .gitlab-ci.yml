@@ -1,0 +1,3 @@
+build_job:
+  script:
+    - /opt/deployer/bin/build_image kuberstack-monitoring-events

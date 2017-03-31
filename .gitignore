@@ -93,4 +93,6 @@ ENV/
 # Rope project settings
 .ropeproject
 
+.idea/*
+
 local_settings.py

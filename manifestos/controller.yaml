@@ -1,0 +1,43 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: kuberstack-monitoring-events
+  namespace: kube-system
+  labels:
+    k8s-app: kuberstack-monitoring-events
+    kubernetes.io/cluster-service: "true"
+    addonmanager.kubernetes.io/mode: Reconcile
+spec:
+  selector:
+    matchLabels:
+      k8s-app: kuberstack-monitoring-events
+  template:
+    metadata:
+      labels:
+        k8s-app: kuberstack-monitoring-events
+      annotations:
+        scheduler.alpha.kubernetes.io/critical-pod: ''
+    spec:
+      containers:
+      - name: kuberstack-monitoring-events
+        image: kuberstack/kuberstack-monitoring-events
+        resources:
+          limits:
+            cpu: 100m
+            memory: 50Mi
+          requests:
+            cpu: 100m
+            memory: 50Mi
+        env:
+          - name: CLUSTER_NAME
+            value: <cluster-name>
+          - name: CLUSTER_API_URL
+            value: <cluster-api-url>
+          - name: SLACK_TOKEN
+            value: <slack-token>
+          - name: SLACK_CHANNEL
+            value: <slack-channel>
+          - name: UPDATE_INTERVAL
+            value: 60
+          - name: ALERTS_LEVELS_EXCLUDE
+            value: Normal

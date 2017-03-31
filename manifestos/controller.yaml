@@ -38,6 +38,6 @@ spec:
           - name: SLACK_CHANNEL
             value: <slack-channel>
           - name: UPDATE_INTERVAL
-            value: 60
+            value: '60'
           - name: ALERTS_LEVELS_EXCLUDE
-            value: Normal
+            value: 'Normal'

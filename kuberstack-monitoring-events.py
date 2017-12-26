@@ -3,7 +3,8 @@ import time
 import datetime
 from kubernetes import client, config
 from alerts.slack import send_alert as slack_send_alert
-from settings import UPDATE_INTERVAL, ALERTS_LEVELS_EXCLUDE
+from alerts.telegram import send_alert as telegram_send_alert
+from settings import UPDATE_INTERVAL, ALERTS_LEVELS_EXCLUDE, NOTIFICATOR
 
 # Kubernetes API init
 if os.environ.get('DEVELOPMENT_MODE'):
@@ -40,8 +41,14 @@ def main():
                 if event.type in ALERTS_LEVELS_EXCLUDE:
                     continue
 
-                slack_send_alert(event.source.host, event.type, event.message,
-                                 event_time, event.metadata.self_link, event.involved_object)
+                if NOTIFICATOR == "telegram":
+                    telegram_send_alert(event.source.host, event.type, event.message,
+                                        event_time, event.metadata.self_link, event.involved_object)
+                elif NOTIFICATOR == "slack":
+                    slack_send_alert(event.source.host, event.type, event.message,
+                                     event_time, event.metadata.self_link, event.involved_object)
+                else:
+                    raise Exception('Unsupported notificator "{notificator}"'.format(notificator=NOTIFICATOR))
 
                 events_last_name = event_name
                 events_last_timestamp = event_time

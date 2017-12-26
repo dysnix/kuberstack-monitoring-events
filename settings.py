@@ -5,8 +5,13 @@ CLUSTER_NAME = os.environ.get('CLUSTER_NAME', '')
 CLUSTER_API_URL = os.environ.get('CLUSTER_API_URL', '')
 
 # Notifications
+NOTIFICATOR = os.environ.get('NOTIFICATOR', 'slack')  # "telegram" or "slack"
+
 SLACK_TOKEN = os.environ.get('SLACK_TOKEN', '')
 SLACK_CHANNEL = os.environ.get('SLACK_CHANNEL', '#alerts')
+
+TELEGRAM_TOKEN = os.environ.get('TELEGRAM_TOKEN', '')
+TELEGRAM_CHAT_ID = os.environ.get('TELEGRAM_CHAT_ID', '')
 
 # Monitoring
 UPDATE_INTERVAL = int(os.environ.get('UPDATE_INTERVAL', 60))

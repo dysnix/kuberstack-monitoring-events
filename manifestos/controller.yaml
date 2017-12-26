@@ -33,10 +33,16 @@ spec:
             value: <cluster-name>
           - name: CLUSTER_API_URL
             value: <cluster-api-url>
+          - name: NOTIFICATOR
+            value: 'slack'
           - name: SLACK_TOKEN
             value: <slack-token>
           - name: SLACK_CHANNEL
             value: <slack-channel>
+          - name: TELEGRAM_TOKEN
+            value: <telegram-token>
+          - name: TELEGRAM_CHAT_ID
+            value: <telegrsm-chat-id>
           - name: UPDATE_INTERVAL
             value: '60'
           - name: ALERTS_LEVELS_EXCLUDE
